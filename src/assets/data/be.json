@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Harshita Sewani",
+    "designation": "Student Lead",
+    "social": "https://www.linkedin.com/in/harshita-sewani-64b26730a/",
+    "photo": "/teamImages/BE/harshita_lead.webp"
+  },
+  {
+    "name": "Gaurang Gade",
+    "designation": "Dy. Student Lead",
+    "social": "https://www.linkedin.com/in/gaurang-gade-43b08628b/",
+    "photo": "/teamImages/BE/gaurang_lead.webp"
+  },
+  {
+    "name": "Pankaj Gupta",
+    "designation": "Sr. Tech Manager",
+    "social": "https://www.linkedin.com/in/pankajgupta0695/",
+    "photo": "/teamImages/BE/pankaj_BE.webp"
+  },
+  {
+    "name": "Harshavardhan Khamkar",
+    "designation": "Sr. Tech Manager",
+    "social": "https://www.linkedin.com/in/harshavardhan-khamkar/",
+    "photo": "/teamImages/BE/harshavardhan_BE.webp"
+  },
+  {
+    "name": "Veda Patki",
+    "designation": "Sr. Tech Manager",
+    "social": "https://www.linkedin.com/in/veda-patki-07974b319/",
+    "photo": "/teamImages/BE/veda_BE.webp"
+  },
+  {
+    "name": "Sahil Tanwani",
+    "designation": "Sr. Tech Manager",
+    "social": "https://www.linkedin.com/in/sahil-tanwani-bb44012b4/",
+    "photo": "/teamImages/BE/sahil_BE.webp"
+  },
+  {
+    "name": "Yash Katiyara",
+    "designation": "Sr. Tech Manager",
+    "social": "https://www.linkedin.com/in/yash-katiyara/",
+    "photo": "/teamImages/BE/yash_BE.webp"
+  },
+  {
+    "name": "Om Mhatre",
+    "designation": "Sr. Tech Manager",
+    "social": "https://www.linkedin.com/in/om-mhatre-947b332a2/",
+    "photo": "/teamImages/BE/ommhatre_BE.webp"
+  },
+  {
+    "name": "Aanchal Gupta",
+    "designation": "Sr. PR Manager",
+    "social": "https://www.linkedin.com/in/aanchal-gupta-4b710419b/",
+    "photo": "/teamImages/BE/aanchal_BE.webp"
+  },
+  {
+    "name": "Vedant Mhatre",
+    "designation": "Sr. PR Manager",
+    "social": "https://www.linkedin.com/in/vedant-mhatre-16914b325",
+    "photo": "/teamImages/BE/vedant_BE.webp"
+  },
+  {
+    "name": "Riddhi Menghrajani",
+    "designation": "Sr. Ambassador",
+    "social": "https://www.linkedin.com/in/riddhi-menghrajani-176b032a4",
+    "photo": "/teamImages/BE/riddhi_BE_ambassadors.webp"
+  },
+  {
+    "name": "Priyanka Ochaney",
+    "designation": "Sr. Ambassador",
+    "social": "https://www.linkedin.com/in/priyanka-ochaney-a14b40274/",
+    "photo": "/teamImages/BE/priyanka_BE.webp"
+  },
+  {
+    "name": "Garv Chandnani",
+    "designation": "Sr. Graphics Designer",
+    "social": "https://www.linkedin.com/in/garvchandnani2255/",
+    "photo": "/teamImages/BE/garv_BE.webp"
+  }
+]

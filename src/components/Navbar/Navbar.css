@@ -1,0 +1,142 @@
+.codecell-nav {
+  padding-inline: 6rem; /* reduce default navbar width/padding */
+  height: 12vh !important;
+  min-height: 80px;
+  font-size: 1.4rem !important;
+  background: var(--dark-alpha) !important;
+  color: white !important;
+  font-family: "Press Start 2P", sans-serif;
+  border-bottom: 1px solid var(--primary);
+  font-weight: 100;
+}
+.nav-items-wrapper {
+  justify-content: right;
+}
+
+.nav-items {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-title .codecell-logo {
+  width: clamp(3.5rem, 4.75vw, 4.5rem);
+}
+
+.navbar-title .vesit-logo {
+  width: clamp(1rem, 10vw, 3rem);
+}
+
+.navbar-title span {
+  color: var(--primary);
+}
+
+.navbar-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: "Press Start 2P", sans-serif !important;
+  font-size: 1.5rem;
+  color: white !important;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.navbar-toggler {
+  outline-style: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.2s ease-out;
+  font-size: 1.3rem; /* +40% */
+}
+
+.nav-item {
+  transition: transform 0.2s ease-out;
+}
+
+.nav-item:hover {
+  transform: translateY(-3px);
+  color: var(--primary) !important;
+}
+
+.nav-item:hover > a {
+  color: var(--primary);
+  /* border-bottom: 3px solid var(--primary); */
+  /* text-decoration: underline; */
+}
+
+/* "SYRUS 7.0" link: a normal nav link (same font, size and hover lift as the
+   others), tinted Star Wars yellow with a soft glow. */
+.nav-item.syrus-nav > a {
+  color: #ffe81f;
+  text-shadow: 0 0 8px rgba(255, 232, 31, 0.45);
+  transition:
+    color 0.2s ease-out,
+    text-shadow 0.2s ease-out;
+}
+
+.nav-item.syrus-nav:hover > a {
+  color: #fff3a0;
+  text-shadow:
+    0 0 6px rgba(255, 232, 31, 0.9),
+    0 0 18px rgba(255, 232, 31, 0.55),
+    0 0 32px rgba(233, 164, 21, 0.35);
+}
+
+@media screen and (max-width: 1399px) {
+  .codecell-nav {
+    min-height: none;
+    height: auto !important;
+  }
+  .nav-items {
+    padding-right: 1rem;
+    padding-block: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+  }
+  .nav-item a {
+    font-size: 1.64rem; /* scaled 40% but slightly reduced for medium screens */
+  }
+}
+
+@media screen and (max-width: 729px) {
+  .codecell-nav {
+    justify-content: space-between !important;
+  }
+}
+
+@media screen and (max-width: 545px) {
+  .codecell-nav {
+    padding-inline: 1%;
+  }
+  .navbar-title {
+    font-size: 1rem;
+  }
+  .navbar-title img {
+    width: 3.25rem !important;
+  }
+  .nav-item a {
+    font-size: 1.4rem; /* scaled up from earlier mobile size */
+  }
+}
+
+@media screen and (max-width: 373px) {
+  .codecell-nav {
+    padding-inline: 1% !important;
+  }
+  .navbar-title {
+    font-size: 5vw;
+  }
+  .navbar-title img {
+    width: 15vw !important;
+  }
+}

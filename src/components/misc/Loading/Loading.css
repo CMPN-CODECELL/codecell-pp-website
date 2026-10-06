@@ -1,0 +1,44 @@
+.loading {
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2147483000;
+  background-color: #040b15;
+  /* Safety net: if the script that normally removes the splash is slow or missing,
+     the splash hides itself so the page underneath is never stuck behind it. */
+  animation: loading-safety 0.3s ease 3s forwards;
+}
+
+.loading img {
+  margin: auto;
+  width: 900px;
+  max-width: 100%;
+  height: auto;
+}
+
+.loading.loading-leaving {
+  animation: loading-out 0.45s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes loading-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes loading-safety {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}

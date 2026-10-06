@@ -1,0 +1,168 @@
+[
+  {
+    "event-name": "Web Verse",
+    "event-image": "webverse.jpg",
+    "event-desc": "The web development session tailored for second-year students covered HTML, CSS, JavaScript, and more. Participants gained hands-on experience in building responsive designs, adding interactivity, and connecting databases to create dynamic web applications.",
+    "event-time": "Aug 2023",
+    "event-guest": "Codecell Team"
+  },
+  {
+    "event-name": "DSAccelerate",
+    "event-image": "dsaaccelerate.jpg",
+    "event-desc": "The DSA Boot Camp was a 4-week program for TE students, offering in-depth learning of Data Structures and Algorithms through coding challenges, optimization techniques, and algorithmic concepts to enhance problem-solving skills",
+    "event-time": "Aug 2023",
+    "event-guest": "Codecell Team"
+  },
+  {
+    "event-name": "Design Thinking",
+    "event-image": "designthinking.jpg",
+    "event-desc": "CodeCell hosted 'Unleashing Innovation & Creativity Through Design Thinking', led by Dr. Prashant Kanade and the design team. The event explored design thinking and hands-on Figma exercises for creating innovative solutions.",
+    "event-time": "Aug 2023",
+    "event-guest": "Dr. Prashant Kanade"
+  },
+  {
+    "event-name": "Introduction to Open Source",
+    "event-image": "opensource.jpeg",
+    "event-desc": "Hacktoberfest 2023's grand opening event, 'Intro to Open-Source', covered insights on what open-source is, showcased projects, and highlighted opportunities in the open-source community.",
+    "event-time": "Oct 2023",
+    "event-guest": "Codecell Team"
+  },
+  {
+    "event-name": "GSoC Talk",
+    "event-image": "gsoc.jpg",
+    "event-desc": "The GSoC Talk at VESIT by CodeCell introduced students to Google Summer of Code. The event covered open-source contributions, proposal writing, and GSoC opportunities under the direction of Mr. Savio Dias.",
+    "event-time": "Oct 2023",
+    "event-guest": "Mr. Savio Dias"
+  },
+  {
+    "event-name": "Introduction to Git & Github",
+    "event-image": "introtogithub.jpg",
+    "event-desc": "CodeCell organized a Git and GitHub Workshop at VESIT, introducing students to version control, collaboration, and project management. Participants explored GitHub’s features and learned about open-source contributions.",
+    "event-time": "Oct 2023",
+    "event-guest": "Codecell Team"
+  },
+  {
+    "event-name": "Syrus'24 Hackathon",
+    "event-image": "syrus-24.jpeg",
+    "event-desc": "The Syrus Hackathon, powered by Devfolio, showcased 250+ students in a 24-hour coding marathon. CodeCell’s flagship event promoted innovation in Web 2.0, Web 3.0, and GenAI.",
+    "event-time": "Feb 2024"
+  },
+  {
+    "event-name": "MERN and Django Workshop",
+    "event-image": "mernanddjango.png",
+    "event-desc": "This one-week internship program focused on Django and full-stack development, giving students a strong foundation in MERN and Django frameworks and enhance their web development skills.",
+    "event-time": "May 2024",
+    "event-guest": "Mr. Richard Joseph, Aditya Mangtani, Hannan Chougle, Latish Advani"
+  },
+  {
+    "event-name": "Career Guidance Series",
+    "event-image": "careerguidance.jpg",
+    "event-desc": "This program gave students a deep understanding of various career paths, offering clear guidance on succeeding in research, excelling at competitive programming, and pursuing higher education abroad.",
+    "event-time": "Aug 2024",
+    "event-guest": "Gaurish Baliga (KJSCE), Vishesh Mittal, Attreyee Mukherjee"
+  },
+  {
+    "event-name": "Entrepreneurship and Innovation",
+    "event-image": "entrepreneurship.jpg",
+    "event-desc": "This program equips aspiring entrepreneurs with the knowledge and strategies to create innovative, sustainable businesses by understanding emerging trends, customer needs, and technological advancements.",
+    "event-time": "Aug 2024",
+    "event-guest": "Aditya Mangtani, Hiten Kataria"
+  },
+  {
+    "event-name": "Generative AI Workshop",
+    "event-image": "genai.jpg",
+    "event-desc": "A workshop about the fundamentals of generative AI to help students understand the technology and implement its applications using platforms like Botpress.",
+    "event-time": "Sept 2024",
+    "event-guest": "Piyush Chugeja, Vedant Pawar"
+  },
+  {
+    "event-name": "DSA Bootcamp",
+    "event-image": "dsabootcamp.png",
+    "event-desc": "The program offered participants an opportunity to master essential Data Structures and Algorithms. Attendees engaged in hands-on contests to reinforce their learning, enhance coding skills, and improve problem-solving abilities.",
+    "event-time": "Oct 2024",
+    "event-guest": "Sadhak Kumar, Chinmay Desai, Sahil Tanwani, Piyush Chugeja, Pankaj Gupta, Jai Bhatia"
+  },
+  {
+    "event-name": "GitHub for Hacktoberfest",
+    "event-image": "git24.jpg",
+    "event-desc": "The workshop covered key concepts of version control, Git, GitHub, and popular open-source events like Hacktoberfest, encouraging students to get involved in the global open-source community.",
+    "event-time": "Oct 2024",
+    "event-guest": "Gautam Rai, Vedika Walhe"
+  },
+  {
+    "event-name": "DeepSeek Workshop",
+    "event-image": "deepseek-workshop.png",
+    "event-desc": "An interactive journey into DeepSeek AI, where students explored semantic search, NLP and hands-on problem solving with real AI models. The workshop bridged theory and practice, showing how AI is reshaping industries from e-commerce to healthcare.",
+    "event-time": "Feb 2025",
+    "event-guest": "Attreyee Mukherjee, Piyush Chugeja"
+  },
+  {
+    "event-name": "Syrus'25 Hackathon",
+    "event-image": "syrus-25.jpg",
+    "event-desc": "Syrus 2025 brought together 600+ innovators in a high-energy 36-hour hackathon, tackling AI-driven finance and sustainable development challenges. From GenAI prototypes to impactful SDG solutions, students turned bold ideas into working code under expert mentorship.",
+    "event-time": "Mar 2025"
+  },
+  {
+    "event-name": "Smarter Software Development with AI Tools",
+    "event-image": "ai-tools-workshop.png",
+    "event-desc": "A 3-day workshop and 2-week internship that empowered students to master AI-assisted design, coding, testing and deployment. With 15 real projects delivered, participants gained industry-ready skills while blending innovation, research and hands-on teamwork.",
+    "event-time": "Jun 2025",
+    "event-guest": "Pankaj Gupta, Aliza Khan, Veda Patki, Aanchal Gupta"
+  },
+  {
+    "event-name": "MCP and Agentic AI Workshop",
+    "event-image": "mcp-agentic-ai-workshop.jpg",
+    "event-desc": "Students learned MCP for tool integration with Claude, Git and  Discord, and Google ADK for building powerful AI agents like email responders and hackathon fetchers.",
+    "event-time": "Aug 2025",
+    "event-guest": "Hannan Chougle, Harshavardhan Khamkar, Aanchal Gupta"
+  },
+  {
+    "event-name": "Unlocking innovation with GitHub Copilot",
+    "event-image": "github-event.jpeg",
+    "event-desc": "The session covered Git and GitHub fundamentals, including repositories, branches, pull requests, and concurrency, while demonstrating how GitHub Copilot enhances coding efficiency and is transforming workflows across the tech industry.",
+    "event-time": "Aug 2025",
+    "event-guest": "Dhanashree Chavan (Senior Enterprise Advocate @ GitHub"
+  },
+  {
+    "event-name": "DSA HeadStart",
+    "event-image": "dsa-headstart.jpeg",
+    "event-desc": "A two-day DSA Bootcamp covered arrays, 2D arrays, stacks, queues, hashmaps, two-pointers, and subarrays with beginner-friendly lectures and coding contests for hands-on learning.",
+    "event-time": "Sept 2025",
+    "event-guest": "Veda Patki, Kushagra Kumar, Sahil Tanwani, Gaurang Gade"
+  },
+  {
+    "event-name": "Path To GSoC",
+    "event-image": "path-to-gsoc.jpg",
+    "event-desc": "A hands-on session introducing students to open-source development and guiding them through the Google Summer of Code (GSoC) journey with insights from mentors and steps to start contributing to global projects.",
+    "event-time": "Oct 2025",
+    "event-guest": "Sanjay Sargam GSoC Mentor '25 | GSoC Contributor '24 @AnkiDroid"
+  },
+  {
+    "event-name": "Syrus Hackathon 2026",
+    "event-image": "syrus-26.jpg",
+    "event-desc": "Syrus 2026 brought together 638 innovators in a high-energy 36-hour hackathon, featuring Agentic AI and Open Innovation tracks aligned with UN SDGs. From autonomous AI systems to sustainable technology solutions, teams built impactful prototypes under expert mentorship.",
+    "event-time": "Mar 2026",
+    "event-guest": "Piyush Chugeja, Ajay Iyer, Vedant Pawar, Manasi Sharma, Sakshi Kirmathe, Rezinix Team"
+  },
+  {
+    "event-name": "Prompt2Product: Innovation Through Agentic AI Application",
+    "event-image": "prompt2product.png",
+    "event-desc": "An exclusive 2-day workshop for TE CMPN students on advanced prompt engineering and agentic AI application development. Participants built reasoning pipelines and secure autonomous agents using LangSmith, LlamaIndex, NotebookLM, and Pydantic AI across frontier models.",
+    "event-time": "June 2026",
+    "event-guest": "Poorvaja Joshi, Kushagra Kumar"
+  },
+  {
+    "event-name": "System Sphere: Designing Scalable Innovations",
+    "event-image": "system-sphere.png",
+    "event-desc": "An exclusive 2-day workshop for BE CMPN students on modern, scalable software architecture. Covered High-Level Design (HLD), caching strategies, load balancing, and distributed microservices with a focus on placement preparation for product-based roles.",
+    "event-time": "Jun 2026",
+    "event-guest": "Sahil Tanwani"
+  },
+  {
+    "event-name": "Cloud Workshop",
+    "event-image": "cloud-workshop.png",
+    "event-desc": "An intensive 2-day workshop on systems programming, parallel computing, and distributed architectures for TE CMPN students. Conducted using NJIT coursework, participants covered virtual machine setup, POSIX threads, MPI-based distributed systems, and concurrency debugging for MAANG system design interviews.",
+    "event-time": "Aug 2026",
+    "event-guest": "Prof. K. Mani, Prof. Shirish Kulkarni"
+  }
+]

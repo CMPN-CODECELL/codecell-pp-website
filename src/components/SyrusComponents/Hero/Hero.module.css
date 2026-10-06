@@ -1,0 +1,74 @@
+.hero {
+  width: 100%;
+  max-width: 1100px;
+  padding: calc(var(--syrus-nav-h) + 12px) var(--syrus-gutter) 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 3vw, 24px);
+}
+
+.logo {
+  height: clamp(52px, 8vw, 72px);
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.vesit {
+  height: clamp(58px, 9vw, 80px);
+}
+
+.divider {
+  width: 1px;
+  height: clamp(40px, 6vw, 56px);
+  background: linear-gradient(transparent, rgba(var(--syrus-bone-rgb), 0.5), transparent);
+}
+
+.title {
+  margin: clamp(26px, 5vh, 52px) 0 0;
+  font-family: var(--syrus-font-primary);
+  font-weight: 400;
+  font-size: clamp(2.7rem, 14.5vw, 9.5rem);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--syrus-yellow);
+  text-shadow:
+    0 0 10px rgba(var(--syrus-yellow-rgb), 0.35),
+    0 0 42px rgba(var(--syrus-yellow-rgb), 0.18);
+  white-space: nowrap;
+}
+
+.dates {
+  margin: clamp(18px, 3vh, 30px) 0 0;
+  font-weight: 600;
+  font-size: clamp(1rem, 2.6vw, 1.5rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--syrus-bone);
+}
+
+.actions {
+  margin-top: clamp(28px, 5vh, 48px);
+  width: 100%;
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+  .hero {
+    padding-top: calc(var(--syrus-nav-h) - 18px);
+  }
+  .title {
+    margin-top: 12px;
+    font-size: clamp(2.4rem, 11vh, 5rem);
+  }
+  .actions {
+    margin-top: 16px;
+  }
+}

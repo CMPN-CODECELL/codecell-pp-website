@@ -1,0 +1,25 @@
+/* These were plain <div>s before; they are real headings now (better for search
+   engines and screen readers). This neutralises Bootstrap's default heading
+   styles on them. It is loaded FIRST, so each element's own class rules still
+   win wherever they set a value. */
+.codecell-title,
+.section-title,
+.event-name {
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
