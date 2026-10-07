@@ -4,9 +4,12 @@
  */
 
 // Which button is the main call-to-action in the Hero and the Navbar:
-//   "register" -> Register on Unstop (default)
-//   "mentor"   -> Call a Mentor (opens the Call A Mentor modal)
-export const PRIMARY_ACTION = "register";
+//   "shortlist" -> View Shortlist (opens /syrus/shortlist) (default)
+//   "register"  -> Register on Unstop
+//   "mentor"    -> Call a Mentor (opens the Call A Mentor modal)
+export const PRIMARY_ACTION = "shortlist";
+
+export const SHORTLIST_URL = "/syrus/shortlist";
 
 export const REGISTER_URL =
   process.env.NEXT_PUBLIC_UNSTOP_REG_FORM_URL || "https://unstop.com";

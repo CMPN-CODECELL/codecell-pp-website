@@ -1,4 +1,10 @@
-import { PRIMARY_ACTION, REGISTER_URL, JOIN_GROUP_URL } from "../syrusConfig";
+import Link from "next/link";
+import {
+  PRIMARY_ACTION,
+  REGISTER_URL,
+  SHORTLIST_URL,
+  JOIN_GROUP_URL,
+} from "../syrusConfig";
 import { WhatsAppIcon, MentorIcon } from "../icons";
 import styles from "./ActionButtons.module.css";
 
@@ -10,6 +16,7 @@ import styles from "./ActionButtons.module.css";
  */
 export default function ActionButtons({ onCallMentor, compact = false }) {
   const isMentor = PRIMARY_ACTION === "mentor";
+  const isShortlist = PRIMARY_ACTION === "shortlist";
 
   return (
     <div className={`${styles.row} ${compact ? styles.compact : ""}`}>
@@ -23,6 +30,17 @@ export default function ActionButtons({ onCallMentor, compact = false }) {
           <MentorIcon className={styles.icon} />
           <span className={styles.label}>Call a Mentor</span>
         </button>
+      ) : isShortlist ? (
+        <Link
+          className={`syrus-btn syrus-btn--primary ${styles.register}`}
+          href={SHORTLIST_URL}
+          aria-label="View the Day 1 shortlisted teams"
+        >
+          <span className={styles.registerFull}>View Shortlist</span>
+          <span className={styles.registerShort} aria-hidden="true">
+            Shortlist
+          </span>
+        </Link>
       ) : (
         <a
           className={`syrus-btn syrus-btn--primary ${styles.register}`}

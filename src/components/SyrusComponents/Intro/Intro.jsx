@@ -69,8 +69,12 @@ export default function Intro({ children }) {
     let stageH = window.innerHeight;
     let crawlH = 0;
     let titleScale = 1; // makes the title exactly as wide as the screen
+    // Set on cleanup. Async callbacks (document.fonts.ready) can fire after the
+    // intro has unmounted, when every ref below is already null.
+    let disposed = false;
 
     const measure = () => {
+      if (disposed) return;
       stageH = window.innerHeight;
       crawlH = crawlRef.current?.offsetHeight || 0;
       const textW = titleTextRef.current?.offsetWidth || 1;
@@ -90,6 +94,7 @@ export default function Intro({ children }) {
     };
 
     const apply = (p) => {
+      if (disposed || !prologueRef.current || !heroRef.current) return;
       // Prologue line
       const pro = prologueRef.current;
       pro.style.opacity = String(1 - seg(p, 0.045, 0.1));
@@ -138,6 +143,7 @@ export default function Intro({ children }) {
     };
 
     const tick = (now) => {
+      if (disposed) return;
       const dt = Math.min(0.05, (now - last) / 1000 || 0.016);
       last = now;
       const k = reduceMotion ? 1 : 1 - Math.exp(-dt * FOLLOW_RATE);
@@ -149,6 +155,7 @@ export default function Intro({ children }) {
     };
 
     const kick = () => {
+      if (disposed) return;
       readTarget();
       if (!raf) {
         last = performance.now();
@@ -162,6 +169,7 @@ export default function Intro({ children }) {
     apply(current);
 
     const onResize = () => {
+      if (disposed) return;
       measure();
       kick();
     };
@@ -174,6 +182,7 @@ export default function Intro({ children }) {
     document.fonts?.ready.then(onResize);
 
     return () => {
+      disposed = true;
       wheelSmoother.destroy();
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", kick);

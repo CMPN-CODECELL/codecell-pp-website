@@ -12,7 +12,7 @@
   flex: none;
 }
 
-/* Register button: "Register Now" on desktop, just "Register" on phones */
+/* Primary button: full label by default, short label in the compact Navbar on phones */
 .registerShort {
   display: none;
 }
@@ -34,11 +34,12 @@
     display: none;
   }
 
-  .registerFull {
+  /* Only the compact Navbar uses the short word; the Hero keeps the full label */
+  .compact .registerFull {
     display: none;
   }
 
-  .registerShort {
+  .compact .registerShort {
     display: inline;
   }
 
