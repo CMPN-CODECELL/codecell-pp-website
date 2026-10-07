@@ -14,7 +14,7 @@ export default function Tracks() {
     >
       <div className={`syrus-container ${styles.layout}`}>
         <img
-          src="/syrus-characters/Yoda.png"
+          src="/syrus-characters/Yoda.webp"
           alt=""
           aria-hidden="true"
           className={styles.character}

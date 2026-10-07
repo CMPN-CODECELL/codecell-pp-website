@@ -15,7 +15,7 @@ export default function Faq() {
       aria-labelledby="faq-title"
     >
       <img
-          src="/syrus-characters/mandalorian.png"
+          src="/syrus-characters/mandalorian.webp"
           alt=""
           aria-hidden="true"
           className={styles.character}

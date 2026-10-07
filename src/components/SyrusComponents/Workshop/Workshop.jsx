@@ -2,16 +2,16 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import SectionHeading from "../SectionHeading/SectionHeading";
 import styles from "./Workshop.module.css";
 
-// Files are named like "QFF-5Oct-1.png" (day, month, optional part number).
+// Files are named like "QFF-5Oct-1.webp" (day, month, optional part number).
 // They live in public/workshop-images (served from /workshop-images/…). Add a new
 // photo by dropping it in that folder and adding its file name to this list.
 const WORKSHOP_FILES = [
-  "QFF-5Oct-1.png",
-  "QFF-5Oct-2.png",
-  "QFF-6Oct.png",
-  "QFF-7Oct.png",
-  "QFF-8Oct-1.png",
-  "QFF-8Oct-2.png",
+  "QFF-5Oct-1.webp",
+  "QFF-5Oct-2.webp",
+  "QFF-6Oct.webp",
+  "QFF-7Oct.webp",
+  "QFF-8Oct-1.webp",
+  "QFF-8Oct-2.webp",
 ];
 const files = Object.fromEntries(
   WORKSHOP_FILES.map((name) => [`../Workshop Images/${name}`, `/workshop-images/${name}`]),
