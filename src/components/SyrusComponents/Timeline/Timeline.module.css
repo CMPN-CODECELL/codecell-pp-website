@@ -272,6 +272,80 @@
   --panel-line: var(--syrus-holo);
 }
 
+/* ---------- enlarged card: the full text, laid over the card column ---------- */
+.detail {
+  --cut: 14px;
+  --panel-bg: rgba(14, 17, 23, 0.97);
+  --panel-line: var(--syrus-yellow);
+  position: absolute;
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  font-family: var(--syrus-font-text);
+  color: var(--syrus-bone);
+}
+
+.detailBody {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(14px, 2vw, 26px) clamp(16px, 2.2vw, 28px);
+  padding-right: 52px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail .date {
+  color: var(--syrus-yellow);
+}
+
+.detail .step {
+  color: var(--syrus-yellow);
+}
+
+.detailTitle {
+  margin: 4px 0 0;
+  font-weight: 700;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  line-height: 1.25;
+}
+
+.detailDesc {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  white-space: pre-line;
+}
+
+.close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--syrus-seam);
+  border-radius: 50%;
+  color: var(--syrus-bone);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.close:hover,
+.close:focus-visible {
+  border-color: var(--syrus-holo);
+  color: var(--syrus-holo);
+  outline: none;
+}
+
 /* ---------- bottom bar: BB-8's rail, fixed to the bottom-left ---------- */
 .bottom {
   --m: clamp(12px, 3vw, 48px);
@@ -420,6 +494,25 @@
   .desc {
     font-size: 0.8125rem;
     line-height: 1.35;
+  }
+
+  .detail {
+    --cut: 10px;
+  }
+
+  .detailBody {
+    padding: 14px 16px;
+    padding-right: 50px;
+    gap: 6px;
+  }
+
+  .detailTitle {
+    font-size: 1.25rem;
+  }
+
+  .detailDesc {
+    font-size: 0.9375rem;
+    line-height: 1.5;
   }
 }
 

@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import SectionHeading from "../SectionHeading/SectionHeading";
 import events from "../../../assets/data/timelineEvents";
 import shipModels from "../../../assets/data/shipModels";
@@ -20,6 +20,10 @@ const FLIGHT_EASE = [0.45, 0, 0.2, 1];
 // How quickly the card column catches up with the scroll position (per second). The
 // column follows the page smoothly instead of snapping from card to card.
 const FOLLOW_RATE = 9;
+
+// The enlarged card eases out quickly and settles softly.
+const DETAIL_EASE = [0.32, 0.72, 0, 1];
+const CLOSE_EASE = [0.4, 0, 0.2, 1];
 
 const clamp01 = (v) => Math.max(0, Math.min(1, v));
 
@@ -70,6 +74,10 @@ export default function Timeline() {
   // Extra steps down the detail list that were needed to stop text being clipped.
   const [fit, setFit] = useState({ key: "", extra: 0 });
   const [fontsTick, setFontsTick] = useState(0);
+  // The enlarged panel: which card, and where that card sits in the column, so the
+  // panel can grow from it and shrink back into it (null = closed).
+  const [open, setOpen] = useState(null);
+  const cardsRef = useRef(null);
   const reelRef = useRef(null);
   const thumbRef = useRef(null);
   const cardRefs = useRef([]);
@@ -194,6 +202,27 @@ export default function Timeline() {
     [pinMetrics, reduceMotion],
   );
 
+  // Scrolling to another stop, or Escape, closes the enlarged card.
+  useEffect(() => {
+    setOpen(null);
+  }, [active]);
+
+  useEffect(() => {
+    if (open === null) return undefined;
+    const onKey = (e) => e.key === "Escape" && setOpen(null);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  const openCard = (k) => {
+    const card = cardRefs.current[k];
+    const box = cardsRef.current;
+    if (!card || !box) return;
+    const a = card.getBoundingClientRect();
+    const b = box.getBoundingClientRect();
+    setOpen({ k, rect: { top: a.top - b.top, left: a.left - b.left, width: a.width, height: a.height } });
+  };
+
   const onKeyDown = (e) => {
     if (e.key === "ArrowRight" || e.key === "ArrowDown") {
       e.preventDefault();
@@ -228,6 +257,8 @@ export default function Timeline() {
   // The ship leans a little into the turn while it flies, then levels out on arrival.
   const bank = arrived ? 0 : bankDegrees(dir);
   const g = galaxies[active];
+  // Where the enlarged panel ends up: the whole card column (minus the scroll thumb gutter).
+  const full = cards ? { top: 0, left: 0, width: cards.w - 12, height: cards.h } : {};
 
   const sizeKey = `${size.w}x${size.h}`;
   const extra = fit.key === sizeKey ? fit.extra : 0;
@@ -389,6 +420,7 @@ export default function Timeline() {
 
               {cards && (
                 <div
+                  ref={cardsRef}
                   className={styles.cards}
                   style={{ left: cards.x, top: cards.y, width: cards.w, height: cards.h }}
                 >
@@ -411,8 +443,9 @@ export default function Timeline() {
                             }`}
                             style={{ "--lines": lines }}
                             tabIndex={Math.abs(k - active) <= 1 ? 0 : -1}
-                            onClick={() => goTo(k)}
+                            onClick={() => (k === active ? openCard(k) : goTo(k))}
                             aria-current={k === active ? "step" : undefined}
+                            aria-haspopup="dialog"
                           >
                             <span className={styles.cardInner}>
                               {showMeta && (
@@ -438,6 +471,64 @@ export default function Timeline() {
                   <div className={styles.thumbTrack} aria-hidden="true">
                     <span ref={thumbRef} className={styles.thumb} />
                   </div>
+                  <AnimatePresence>
+                    {open !== null && (
+                      <motion.div
+                        key="detail"
+                        className={`syrus-panel ${styles.detail}`}
+                        role="dialog"
+                        aria-label={events[open.k].title}
+                        initial={reduceMotion ? { opacity: 0, ...full } : { opacity: 0.6, ...open.rect }}
+                        animate={{ opacity: 1, ...full }}
+                        exit={
+                          reduceMotion
+                            ? { opacity: 0, ...full }
+                            : {
+                                ...open.rect,
+                                opacity: 0,
+                                transition: {
+                                  duration: 0.36,
+                                  ease: CLOSE_EASE,
+                                  // stay solid while it folds into the card, then drop away
+                                  opacity: { duration: 0.1, delay: 0.3, ease: "linear" },
+                                },
+                              }
+                        }
+                        transition={{ duration: reduceMotion ? 0.01 : 0.42, ease: DETAIL_EASE }}
+                      >
+                        <button
+                          type="button"
+                          className={styles.close}
+                          onClick={() => setOpen(null)}
+                          aria-label="Close"
+                          autoFocus
+                        >
+                          ×
+                        </button>
+                        <motion.div
+                          className={styles.detailBody}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1, transition: { duration: 0.22, delay: reduceMotion ? 0 : 0.16 } }}
+                          exit={{ opacity: 0, transition: { duration: 0.12 } }}
+                        >
+                          <div className={styles.meta}>
+                            <span className={styles.phase}>{events[open.k].phase}</span>
+                            <span className={styles.step}>
+                              {pad2(open.k + 1)} / {pad2(N)}
+                            </span>
+                          </div>
+                          <span className={styles.when}>
+                            <span className={styles.date}>{events[open.k].date}</span>
+                            {events[open.k].time && (
+                              <span className={styles.time}>{events[open.k].time}</span>
+                            )}
+                          </span>
+                          <h3 className={styles.detailTitle}>{events[open.k].title}</h3>
+                          <p className={styles.detailDesc}>{events[open.k].description}</p>
+                        </motion.div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               )}
 
