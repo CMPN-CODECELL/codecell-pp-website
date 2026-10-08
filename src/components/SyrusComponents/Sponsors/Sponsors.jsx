@@ -57,7 +57,6 @@ const TIERS = [
       { name: "Prakhar", logo: "/sponsors/PrakharLogo.webp",     objectFit:"cover", imgScale: 1.80 , padding: "3%"},
       { name: "IBM Qiskit", logo: "/sponsors/QiskitLogo-WithoutBG.webp" , imgScale: 1.80 },
       { name: "LFDT", logo: "/sponsors/LFDT.webp",imgScale: 1.20 },
-      { name: "CodeCell TechFusion", logo: "/sponsors/CodeCellTechfusionLogo.webp" },
     ],
   },
 ];
