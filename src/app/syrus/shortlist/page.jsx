@@ -1,23 +1,23 @@
 import Shortlist from "../../../views/Shortlist/Shortlist";
 import JsonLd from "../../../components/Seo/JsonLd";
-import { loadDay1Shortlist } from "../../../lib/shortlist";
+import { loadShortlists } from "../../../lib/shortlist";
 import { SITE_URL, SITE_ID, OG_IMAGE } from "../../../lib/site";
 
 const description =
-  "Teams shortlisted for Day 1 of Syrus 7.0, the CodeCell++ VESIT hackathon, listed by problem statement across the FinTech and Sustainability domains.";
+  "Teams shortlisted for Day 1 and Day 2 of Syrus 7.0, the CodeCell++ VESIT hackathon, listed by problem statement across the FinTech and Sustainability domains.";
 
 export const metadata = {
-  title: "Syrus 7.0 Day 1 Shortlisted Teams",
+  title: "Syrus 7.0 Day 1 & Day 2 Shortlisted Teams",
   description,
   alternates: { canonical: "/syrus/shortlist" },
   openGraph: {
-    title: "Syrus 7.0 Day 1 Shortlisted Teams | CodeCell++ VESIT",
+    title: "Syrus 7.0 Day 1 & Day 2 Shortlisted Teams | CodeCell++ VESIT",
     description,
     url: "/syrus/shortlist",
     images: [OG_IMAGE],
   },
   twitter: {
-    title: "Syrus 7.0 Day 1 Shortlisted Teams | CodeCell++ VESIT",
+    title: "Syrus 7.0 Day 1 & Day 2 Shortlisted Teams | CodeCell++ VESIT",
     description,
     images: [OG_IMAGE],
   },
@@ -29,7 +29,7 @@ const schema = [
     "@type": "WebPage",
     "@id": `${SITE_URL}/syrus/shortlist#webpage`,
     url: `${SITE_URL}/syrus/shortlist`,
-    name: "Syrus 7.0 Day 1 Shortlisted Teams",
+    name: "Syrus 7.0 Day 1 & Day 2 Shortlisted Teams",
     description,
     isPartOf: { "@id": SITE_ID },
     about: { "@id": `${SITE_URL}/syrus#event` },
@@ -44,7 +44,7 @@ const schema = [
       {
         "@type": "ListItem",
         position: 3,
-        name: "Day 1 Shortlist",
+        name: "Shortlist",
         item: `${SITE_URL}/syrus/shortlist`,
       },
     ],
@@ -52,11 +52,11 @@ const schema = [
 ];
 
 export default function Page() {
-  const problemStatements = loadDay1Shortlist();
+  const shortlists = loadShortlists();
   return (
     <>
       <JsonLd data={schema} />
-      <Shortlist problemStatements={problemStatements} />
+      <Shortlist shortlists={shortlists} />
     </>
   );
 }

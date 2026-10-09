@@ -2,14 +2,14 @@
 // on each refresh in `npm run dev`), so nothing here ships to the browser.
 //
 // HOW TO ADD A SHORTLIST
-//   Drop the team CSV into src/assets/data/shortlisted_teams_day1/ using the id of
-//   the problem statement as the file name, e.g. `fintech-ps-2.csv`, then rebuild.
+//   Drop the team CSV into src/assets/data/shortlisted_teams_day1/ (or _day2/) using
+//   the id of the problem statement as the file name, e.g. `fintech-ps-2.csv`, then rebuild.
 //   The first row is the header ("Team Name", "Team Leader Name"). Problem
 //   statements without a file show a "will be announced soon" message.
 import fs from "node:fs";
 import path from "node:path";
 
-const DAY1_DIR = path.join(process.cwd(), "src", "assets", "data", "shortlisted_teams_day1");
+const DATA_DIR = path.join(process.cwd(), "src", "assets", "data");
 
 export const PROBLEM_STATEMENTS = [
   ...[1, 2, 3, 4, 5, 6].map((n) => ({
@@ -92,10 +92,11 @@ function readTeams(file) {
     .filter((t) => t.team);
 }
 
-/** Every problem statement with its shortlisted teams (`teams: null` = not published yet). */
-export function loadDay1Shortlist() {
+/** Every problem statement with its shortlisted teams for one day (`teams: null` = not published yet). */
+function loadDay(day) {
+  const dir = path.join(DATA_DIR, `shortlisted_teams_day${day}`);
   return PROBLEM_STATEMENTS.map((ps) => {
-    const file = path.join(DAY1_DIR, `${ps.id}.csv`);
+    const file = path.join(dir, `${ps.id}.csv`);
     let teams = null;
     if (fs.existsSync(file)) {
       try {
@@ -106,4 +107,8 @@ export function loadDay1Shortlist() {
     }
     return { ...ps, teams };
   });
+}
+
+export function loadShortlists() {
+  return { 1: loadDay(1), 2: loadDay(2) };
 }

@@ -271,3 +271,18 @@
     width: 100%;
   }
 }
+
+.days {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 22px;
+}
+.dayTag {
+  margin-left: 8px;
+  font-size: 0.7em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--syrus-yellow);
+  opacity: 0.85;
+}

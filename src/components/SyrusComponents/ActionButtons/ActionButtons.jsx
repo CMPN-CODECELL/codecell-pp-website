@@ -34,7 +34,7 @@ export default function ActionButtons({ onCallMentor, compact = false }) {
         <Link
           className={`syrus-btn syrus-btn--primary ${styles.register}`}
           href={SHORTLIST_URL}
-          aria-label="View the Day 1 shortlisted teams"
+          aria-label="View the shortlisted teams"
         >
           <span className={styles.registerFull}>View Shortlist</span>
           <span className={styles.registerShort} aria-hidden="true">

@@ -10,19 +10,35 @@ import styles from "./Shortlist.module.css";
 
 const DOMAINS = ["Fintech", "Sustainability"];
 
-export default function Shortlist({ problemStatements }) {
-  const [activeId, setActiveId] = useState(problemStatements[0].id);
+const DAYS = [1, 2];
+
+export default function Shortlist({ shortlists }) {
+  const [day, setDay] = useState(2);
+  const [activeId, setActiveId] = useState(shortlists[2][0].id);
   const tabRefs = useRef({});
+  const problemStatements = shortlists[day];
 
-  // Open the tab named in the URL hash (#fintech-ps-4) so a PS can be linked directly.
+  // Open the day/tab named in the URL hash (#day2-fintech-ps-4) so a PS can be linked
+  // directly. A bare id (#fintech-ps-4) opens Day 2, the default.
   useEffect(() => {
-    const fromHash = window.location.hash.replace("#", "");
-    if (problemStatements.some((p) => p.id === fromHash)) setActiveId(fromHash);
-  }, [problemStatements]);
+    const hash = window.location.hash.replace("#", "");
+    const m = hash.match(/^day([12])-(.+)$/);
+    const d = m ? Number(m[1]) : 2;
+    const id = m ? m[2] : hash;
+    if (shortlists[d].some((p) => p.id === id)) {
+      setDay(d);
+      setActiveId(id);
+    }
+  }, [shortlists]);
 
-  const select = (id) => {
+  const select = (id, d = day) => {
     setActiveId(id);
-    window.history.replaceState(null, "", `#${id}`);
+    window.history.replaceState(null, "", `#day${d}-${id}`);
+  };
+
+  const selectDay = (d) => {
+    setDay(d);
+    select(activeId, d);
   };
 
   const onKeyDown = (e) => {
@@ -62,9 +78,22 @@ export default function Shortlist({ problemStatements }) {
 
       <main className={`syrus-container ${styles.main}`}>
         <section className={styles.head}>
-          <p className={styles.eyebrow}>Day 1 &middot; Syrus 7.0</p>
+          <p className={styles.eyebrow}>Syrus 7.0</p>
           <h1 className={styles.title}>shortlisted teams</h1>
           <span className={styles.rule} aria-hidden="true" />
+          <div className={styles.days} role="group" aria-label="Shortlist day">
+            {DAYS.map((d) => (
+              <button
+                key={d}
+                type="button"
+                aria-pressed={d === day}
+                className={`${styles.tab} ${d === day ? styles.tabActive : ""}`}
+                onClick={() => selectDay(d)}
+              >
+                Day {d}
+              </button>
+            ))}
+          </div>
         </section>
 
         <div className={styles.tabsWrap}>
@@ -115,7 +144,9 @@ export default function Shortlist({ problemStatements }) {
           className={`syrus-panel ${styles.panel}`}
         >
           <div className={styles.panelHead}>
-            <h2 className={styles.psTitle}>{active.title}</h2>
+            <h2 className={styles.psTitle}>
+              {active.title} <span className={styles.dayTag}>Day {day}</span>
+            </h2>
             {published && (
               <span className={styles.count}>
                 {active.teams.length} {active.teams.length === 1 ? "team" : "teams"}
