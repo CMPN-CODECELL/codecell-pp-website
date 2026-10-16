@@ -1,0 +1,418 @@
+/* Winners announcement. The bar, title, tabs and footer reuse Shortlist.module.css. */
+
+.stage {
+  position: relative;
+  max-width: 1040px;
+  min-height: 540px;
+  margin: 0 auto;
+  text-align: center;
+  overflow-x: clip;
+  scroll-margin-top: 78px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: clamp(0.95rem, 2.6vw, 1.2rem);
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  text-transform: uppercase;
+  color: var(--syrus-yellow);
+}
+
+.psTitle {
+  margin: 0;
+  font-family: var(--syrus-font-secondary);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--syrus-yellow);
+}
+
+/* "And the winners are…" while the results come in, a closing line afterwards. */
+.caption {
+  position: relative;
+  height: 2.4rem;
+  margin: 10px 0 30px;
+}
+.captionText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(0.76rem, 2.4vw, 0.92rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--syrus-holo);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.captionOn {
+  opacity: 1;
+}
+
+/* ---- podium ---------------------------------------------------------- */
+.podium {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(14px, 2.5vw, 28px);
+}
+
+.slot {
+  --rk: var(--syrus-yellow-rgb);
+  position: relative;
+  flex: 1 1 0;
+  max-width: 330px;
+  opacity: 0;
+  visibility: hidden;
+}
+.rank1 {
+  --rk: var(--syrus-yellow-rgb);
+  order: 2;
+  max-width: 370px;
+}
+.rank2 {
+  --rk: var(--syrus-holo-rgb);
+  order: 1;
+}
+.rank3 {
+  --rk: var(--syrus-rebel-rgb);
+  order: 3;
+}
+/* Two winners: 1st on the left, 2nd on the right. A lone winner is centred. */
+.podium[data-count="2"] .rank1 {
+  order: 1;
+}
+.podium[data-count="2"] .rank2 {
+  order: 2;
+}
+.podium[data-count="1"] .slot {
+  max-width: 400px;
+}
+
+.shown {
+  visibility: visible;
+  animation: rise 0.85s cubic-bezier(0.22, 0.8, 0.2, 1) both;
+}
+
+.cardWrap {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.45));
+}
+.rank1 .cardWrap {
+  filter: drop-shadow(0 0 22px rgba(var(--rk), 0.28))
+    drop-shadow(0 12px 30px rgba(0, 0, 0, 0.5));
+}
+
+.card {
+  container-type: inline-size;
+  --cut: 16px;
+  --panel-line: rgba(var(--rk), 0.55);
+  --panel-bg: linear-gradient(
+      180deg,
+      rgba(var(--rk), 0.1),
+      rgba(var(--syrus-void-rgb), 0) 55%
+    ),
+    var(--syrus-plate);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+  padding: 32px 22px 30px;
+}
+.rank1 .card {
+  --panel-line: rgba(var(--rk), 0.8);
+  min-height: 300px;
+  padding: 38px 26px 36px;
+}
+.rank2 .card {
+  min-height: 275px;
+}
+
+/* ---- position label ---------------------------------------------------- */
+.place {
+  display: inline-block;
+  margin: 0 0 24px;
+  padding: 7px 16px 7px 18px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgb(var(--rk));
+  background: rgba(var(--rk), 0.1);
+  border: 1px solid rgba(var(--rk), 0.5);
+  border-radius: 3px;
+}
+.rank1 .place {
+  padding: 8px 18px 8px 20px;
+  font-size: 0.86rem;
+  background: rgba(var(--rk), 0.16);
+  border-color: rgba(var(--rk), 0.75);
+  box-shadow: 0 0 18px rgba(var(--rk), 0.22);
+}
+
+/* ---- team name: the focus of the card --------------------------------- */
+.team {
+  --max: 2.15rem;
+  margin: 0 0 18px;
+  max-width: 100%;
+  font-weight: 800;
+  font-size: clamp(1.5rem, 2.8vw, var(--max));
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+  color: #fff;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+/* Shrink to fit: the longest word (--chars) never gets split, long names wrap between words. */
+@supports (width: 1cqi) {
+  .team {
+    font-size: clamp(1.2rem, calc(100cqi / (var(--chars) * 0.66)), var(--max));
+  }
+}
+.rank1 .team {
+  --max: 2.6rem;
+  text-shadow: 0 0 26px rgba(var(--rk), 0.35);
+}
+
+/* The lightsaber: ignites left to right under the team name. */
+.saber {
+  display: block;
+  width: 56%;
+  height: 3px;
+  margin: 0 auto 18px;
+  border-radius: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(var(--rk)) 18%,
+    #fff 50%,
+    rgb(var(--rk)) 82%,
+    transparent
+  );
+  box-shadow: 0 0 10px rgba(var(--rk), 0.8), 0 0 22px rgba(var(--rk), 0.4);
+  transform: scaleX(0);
+}
+.shown .saber {
+  animation: ignite 0.7s 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.leader {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--syrus-bone);
+  overflow-wrap: anywhere;
+}
+.leaderTag {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--syrus-dim);
+}
+
+/* Soft bloom behind 1st place. */
+.glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 0;
+  width: 190%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: radial-gradient(circle, rgba(var(--rk), 0.2), transparent 62%);
+  opacity: 0;
+  pointer-events: none;
+}
+.shown .glow {
+  animation: bloom 1.6s 0.15s ease-out both;
+}
+
+/* ---- jump-to-lightspeed flash, controls, empty state ------------------- */
+.flash {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(255, 255, 255, 0.7),
+    rgba(var(--syrus-holo-rgb), 0.22) 40%,
+    transparent 72%
+  );
+}
+.flashOn {
+  animation: flash 0.9s ease-out both;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 26px;
+}
+.skip {
+  padding: 8px 18px;
+  font: inherit;
+  font-size: 0.78rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--syrus-dim);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.skip:hover,
+.skip:focus-visible {
+  color: var(--syrus-yellow);
+  border-bottom-color: currentColor;
+  outline: none;
+}
+
+.sealed {
+  padding: 70px 8px 40px;
+}
+.holocron {
+  display: block;
+  position: relative;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 38px;
+  border: 1px solid rgba(var(--syrus-yellow-rgb), 0.7);
+  rotate: 45deg;
+  box-shadow: 0 0 24px rgba(var(--syrus-yellow-rgb), 0.35),
+    inset 0 0 18px rgba(var(--syrus-yellow-rgb), 0.2);
+  animation: pulse 2.6s ease-in-out infinite;
+}
+.holocron::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(var(--syrus-holo-rgb), 0.7);
+}
+.sealedTitle {
+  margin: 0 0 8px;
+  font-family: var(--syrus-font-secondary);
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--syrus-bone);
+}
+.sealedText {
+  margin: 0 auto;
+  max-width: 440px;
+  line-height: 1.6;
+  color: var(--syrus-dim);
+}
+
+/* ---- keyframes --------------------------------------------------------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ignite {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes bloom {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  22% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 40px rgba(var(--syrus-yellow-rgb), 0.55),
+      inset 0 0 26px rgba(var(--syrus-yellow-rgb), 0.3);
+  }
+}
+
+/* ---- phones: stack 1st, 2nd, 3rd ---------------------------------------- */
+@media (max-width: 760px) {
+  .stage {
+    min-height: 0;
+  }
+  .caption {
+    height: 3rem;
+  }
+  .captionText {
+    letter-spacing: 0.18em;
+    line-height: 1.5;
+  }
+  .podium {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 22px;
+  }
+  .podium[data-count] .slot {
+    max-width: none;
+    order: 0;
+  }
+  .card,
+  .rank1 .card,
+  .rank2 .card {
+    min-height: 0;
+  }
+  .rank1 .card {
+    padding-top: 34px;
+    padding-bottom: 32px;
+  }
+  .glow {
+    width: 150%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shown,
+  .shown .glow,
+  .flashOn,
+  .holocron {
+    animation: none;
+  }
+  .shown {
+    opacity: 1;
+  }
+  .shown .glow {
+    opacity: 1;
+  }
+  .shown .saber {
+    animation: none;
+    transform: none;
+  }
+}

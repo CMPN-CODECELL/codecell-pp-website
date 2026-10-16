@@ -2,7 +2,7 @@
 // on each refresh in `npm run dev`), so nothing here ships to the browser.
 //
 // HOW TO ADD A SHORTLIST
-//   Drop the team CSV into src/assets/data/shortlisted_teams_day1/ (or _day2/) using
+//   Drop the team CSV into src/assets/data/shortlisted_teams_day1/ (or _day2/, or winners/) using
 //   the id of the problem statement as the file name, e.g. `fintech-ps-2.csv`, then rebuild.
 //   The first row is the header ("Team Name", "Team Leader Name"). Problem
 //   statements without a file show a "will be announced soon" message.
@@ -66,10 +66,13 @@ function parseCsv(text) {
   return rows.map((r) => r.map((c) => c.trim())).filter((r) => r.some((c) => c !== ""));
 }
 
-/** "SAHIL DULANI" -> "Sahil Dulani" (only when the whole name was typed in capitals). */
+/** "SAHIL DULANI" / "sahil dulani" -> "Sahil Dulani" (only when the whole name is in one case). */
 function tidyPersonName(name) {
   const letters = name.replace(/[^A-Za-z]/g, "");
-  if (letters.length > 1 && letters === letters.toUpperCase()) {
+  if (
+    letters.length > 1 &&
+    (letters === letters.toUpperCase() || letters === letters.toLowerCase())
+  ) {
     return name.toLowerCase().replace(/(^|[\s.'-])([a-z])/g, (_, a, b) => a + b.toUpperCase());
   }
   return name;
@@ -111,4 +114,27 @@ function loadDay(day) {
 
 export function loadShortlists() {
   return { 1: loadDay(1), 2: loadDay(2) };
+}
+
+/**
+ * Winners, one CSV per problem statement in src/assets/data/winners/ (same file names
+ * as the shortlists). Rows are in finishing order: row 1 = 1st, row 2 = 2nd, row 3 = 3rd.
+ * Only the first three rows are used. `teams: null` = not announced yet.
+ */
+export function loadWinners() {
+  const dir = path.join(DATA_DIR, "winners");
+  return PROBLEM_STATEMENTS.map((ps) => {
+    const file = path.join(dir, `${ps.id}.csv`);
+    let teams = null;
+    if (fs.existsSync(file)) {
+      try {
+        teams = readTeams(file)
+          .slice(0, 3)
+          .map((t, i) => ({ ...t, rank: i + 1 }));
+      } catch {
+        teams = null;
+      }
+    }
+    return { ...ps, teams };
+  });
 }

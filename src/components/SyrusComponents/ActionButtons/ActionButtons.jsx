@@ -3,6 +3,7 @@ import {
   PRIMARY_ACTION,
   REGISTER_URL,
   SHORTLIST_URL,
+  WINNERS_URL,
   JOIN_GROUP_URL,
 } from "../syrusConfig";
 import { WhatsAppIcon, MentorIcon } from "../icons";
@@ -16,7 +17,21 @@ import styles from "./ActionButtons.module.css";
  */
 export default function ActionButtons({ onCallMentor, compact = false }) {
   const isMentor = PRIMARY_ACTION === "mentor";
-  const isShortlist = PRIMARY_ACTION === "shortlist";
+  // "winners" / "shortlist" turn the main button into an in-site link.
+  const pageLink = {
+    winners: {
+      href: WINNERS_URL,
+      label: "View Winners",
+      short: "Winners",
+      aria: "View the winning teams",
+    },
+    shortlist: {
+      href: SHORTLIST_URL,
+      label: "View Shortlist",
+      short: "Shortlist",
+      aria: "View the shortlisted teams",
+    },
+  }[PRIMARY_ACTION];
 
   return (
     <div className={`${styles.row} ${compact ? styles.compact : ""}`}>
@@ -30,15 +45,15 @@ export default function ActionButtons({ onCallMentor, compact = false }) {
           <MentorIcon className={styles.icon} />
           <span className={styles.label}>Call a Mentor</span>
         </button>
-      ) : isShortlist ? (
+      ) : pageLink ? (
         <Link
           className={`syrus-btn syrus-btn--primary ${styles.register}`}
-          href={SHORTLIST_URL}
-          aria-label="View the shortlisted teams"
+          href={pageLink.href}
+          aria-label={pageLink.aria}
         >
-          <span className={styles.registerFull}>View Shortlist</span>
+          <span className={styles.registerFull}>{pageLink.label}</span>
           <span className={styles.registerShort} aria-hidden="true">
-            Shortlist
+            {pageLink.short}
           </span>
         </Link>
       ) : (

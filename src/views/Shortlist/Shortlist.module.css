@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 max(16px, env(safe-area-inset-left));
-  background: rgba(5, 6, 12, 0.72);
+  background: #05060c;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--syrus-seam);
@@ -285,4 +285,10 @@
   text-transform: uppercase;
   color: var(--syrus-yellow);
   opacity: 0.85;
+}
+
+.barLinks {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 3vw, 28px);
 }

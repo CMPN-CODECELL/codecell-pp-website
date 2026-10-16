@@ -71,9 +71,14 @@ export default function Shortlist({ shortlists }) {
         <Link href="/syrus" className={styles.logo} aria-label="Back to Syrus 7.0">
           syrus
         </Link>
-        <Link href="/syrus" className={styles.back}>
-          <span aria-hidden="true">&larr;</span> Back to Syrus
-        </Link>
+        <nav className={styles.barLinks} aria-label="Syrus pages">
+          <Link href="/syrus/winners" className={styles.back}>
+            Winners
+          </Link>
+          <Link href="/syrus" className={styles.back}>
+            <span aria-hidden="true">&larr;</span> Back to Syrus
+          </Link>
+        </nav>
       </header>
 
       <main className={`syrus-container ${styles.main}`}>
