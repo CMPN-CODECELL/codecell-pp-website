@@ -35,6 +35,8 @@ export default function ActionButtons({ onCallMentor, compact = false }) {
 
   return (
     <div className={`${styles.row} ${compact ? styles.compact : ""}`}>
+      {/* Main button ("View Winners") is commented out for now.
+          Remove the comment wrapper around this block to bring it back.
       {isMentor ? (
         <button
           type="button"
@@ -70,6 +72,7 @@ export default function ActionButtons({ onCallMentor, compact = false }) {
           </span>
         </a>
       )}
+      */}
 
       <a
         className="syrus-btn syrus-btn--ghost"

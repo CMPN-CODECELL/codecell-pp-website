@@ -13,6 +13,12 @@ export const PRIMARY_ACTION = "winners";
 export const SHORTLIST_URL = "/syrus/shortlist";
 export const WINNERS_URL = "/syrus/winners";
 
+// Turns the whole /syrus/winners page on or off. While false, the page's code
+// stays in the project but visiting the URL shows the normal 404 page, and the
+// page is left out of the sitemap and the Shortlist page's links.
+// Set to true (then rebuild) to publish the winners.
+export const WINNERS_PAGE_ENABLED = false;
+
 export const REGISTER_URL =
   process.env.NEXT_PUBLIC_UNSTOP_REG_FORM_URL || "https://unstop.com";
 

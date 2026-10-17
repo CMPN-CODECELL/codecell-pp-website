@@ -5,6 +5,7 @@ import Link from "next/link";
 import Starfield from "../../components/SyrusComponents/Starfield/Starfield";
 import SyrusFooter from "../../components/SyrusComponents/SyrusFooter/SyrusFooter";
 import SyrusScrollToTop from "../../components/SyrusComponents/SyrusScrollToTop/SyrusScrollToTop";
+import { WINNERS_PAGE_ENABLED } from "../../components/SyrusComponents/syrusConfig";
 import "../Syrus/Syrus.css";
 import styles from "./Shortlist.module.css";
 
@@ -72,9 +73,11 @@ export default function Shortlist({ shortlists }) {
           syrus
         </Link>
         <nav className={styles.barLinks} aria-label="Syrus pages">
-          <Link href="/syrus/winners" className={styles.back}>
-            Winners
-          </Link>
+          {WINNERS_PAGE_ENABLED && (
+            <Link href="/syrus/winners" className={styles.back}>
+              Winners
+            </Link>
+          )}
           <Link href="/syrus" className={styles.back}>
             <span aria-hidden="true">&larr;</span> Back to Syrus
           </Link>

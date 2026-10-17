@@ -1,12 +1,14 @@
+import { notFound } from "next/navigation";
 import Winners from "../../../views/Winners/Winners";
 import JsonLd from "../../../components/Seo/JsonLd";
 import { loadWinners } from "../../../lib/shortlist";
+import { WINNERS_PAGE_ENABLED } from "../../../components/SyrusComponents/syrusConfig";
 import { SITE_URL, SITE_ID, OG_IMAGE } from "../../../lib/site";
 
 const description =
   "The winning teams of Syrus 7.0, the CodeCell++ VESIT hackathon: 1st, 2nd and 3rd place for every FinTech and Sustainability problem statement.";
 
-export const metadata = {
+const liveMetadata = {
   title: "Syrus 7.0 Winners",
   description,
   alternates: { canonical: "/syrus/winners" },
@@ -22,6 +24,11 @@ export const metadata = {
     images: [OG_IMAGE],
   },
 };
+
+// While the page is switched off, don't advertise its title/description.
+export const metadata = WINNERS_PAGE_ENABLED
+  ? liveMetadata
+  : { title: "Page not found", robots: { index: false, follow: false } };
 
 const schema = [
   {
@@ -47,6 +54,8 @@ const schema = [
 ];
 
 export default function Page() {
+  // Page is switched off in syrusConfig.js: visitors get the normal 404.
+  if (!WINNERS_PAGE_ENABLED) notFound();
   const problemStatements = loadWinners();
   return (
     <>
